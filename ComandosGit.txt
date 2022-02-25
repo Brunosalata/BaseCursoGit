@@ -1,0 +1,132 @@
+Git init
+git init
+
+- Iniciar o projeto
+- cria um repositório vazio ou transforma uma pasta que você já tem, e que não está com controle de versão, em um repositório (inclui um subdiretório .git na raiz da pasta)
+
+Git clone
+git clone <https://url-do-link>
+
+- Comando para baixar o código-fonte existente de um repositório remoto (como o Github, por exemplo).
+- Quando você clonar um repositório, o código é copiado para a o seu computador e continua linkado ao original, por ser um sistema distribuído. 
+- Para desvincular a cópia do orginal, rodar: git remote rm origin
+
+Git branch
+
+- Com branches (ou ramificações), vários desenvolvedores podem trabalhar paralelamente no mesmo projeto. Assim, cada um pode codar a sua parte sem se atrapalharem.
+- Permite criar, listar e excluir branches:
+	- Criar uma branch local: git branch <nome-da-branch>
+	- Upar a nova branch para o repositório remoto: git push -u <remote> <nome-da-branch>
+	- Ver as ramificações: git branch   ou   git branch --list
+	- Deletar uma branch: git branch -d <nome-da-branch>
+
+Git checkout
+
+- Para trabalhar em uma branch, primeiro você precisa mudar para ela
+	- Mudar de um branch para outra: git checkout <nome-da-ramificação>
+	- Para criar uma branch e ir direto (atalho): git checkout -b <nome-da-branch>
+- Para identificar uma branch, usar o comando 'git log', para listar o histórico de alterações, então, use: git checkout <6 primeiros dígitos do nome da ramificação>
+	- Permite que visualizar o momento de trabalho da branch selecionada, para facilitar a identificação de correções
+	- Para retornar a versão mais recente, usar o comendo:  git checkout master
+- Usado para desfazer alterações dentro de um documento, ou deleção do arquivo, usar o comando: git checkout <nome-do-arquivo-com-extensão>
+	- Para essa função, pode ser usado o comando: git reset
+
+Git reset
+
+- Desfazer mudanças na branch
+	- Para listar os arquivos contendo alterações: git reset
+	- Para desfazer todas as mudanças da branch: git reset --hard
+
+Git clean
+
+- Para deleção de novos arquivos, não rastreados (add, commited): git clean
+	- Alguns arquivos exigem forçar a deleção: git clean -f
+	- Uma vez que são add, os arquivos podem ser deletados com: git checkout <nome> ou git reset --hard
+
+Git status
+git status
+
+- O comando status do Git fornece algumas informações sobre a branch em que você estiver no momento, como seu nome, se ela está atualizada em relação à master e quais arquivos foram alterados
+
+Git add
+
+- Incluir as alterações de um arquivo em nosso próximo commit.
+- Quando criamos, modificamos ou excluímos um arquivo, essas alterações ocorrerão em nosso ambiente local e não serão incluídas no próximo commit (a menos que alteremos as configurações).
+	- Para adicionar um arquivo: git add <arquivo>
+	- Para adicionar todos os arquivos: git add -A OU git add all OU git add .
+- O comando git add não altera o repositório e as alterações não são salvas até usarmos o git commit.
+
+Git commit
+git commit -m "mensagem explicando a mudança no código"
+
+- Definição de um ponto de verificação no processo de desenvolvimento, para o qual você pode voltar mais tarde, se necessário.
+
+Git diff
+
+- Mostra a diferença na área do repositório de trabalho e do último commit: git diff 
+- Mostra as diferenças na área de preparação (changes a serem commitadas): git diff --staged
+- Mostra as diferenças na área de preparação, incluindo as partes alteradas de dentro do documento: git diff --cached
+
+Git log
+
+- Aponta as alterações salvas na branch, da mais recente (HEAD) para a mais antiga, cada um com seu cha, código único para identificação do commit
+	- Listagem ampla: git log
+	- Listagem compacta: git log --oneline
+
+Git push
+
+- Após confirmar as alterações, a próxima coisa que você deseja fazer é enviar as alterações para o servidor remoto.
+- O comando git push envia e salva suas confirmações no repositório remoto.
+	- Caso o arquivo já exista no servidor: git push <remote> <nome-do-branch>
+	- Caso a branch tenha sido criada recentemente, é necessário fazer o upload do branch com o comando: git push -u origin <nome-do-branch>
+
+Git pull
+git pull <remote>
+
+- Usado para obter atualizações do repositório remoto
+	- O comando de pull depende do referencial de onde ele foi feito, ou seja, um git pull feito da sua máquina vai puxar informações do repositório original para ela, enquanto um git pull feito a partir do repositório original vai puxar as informações da sua máquina
+- Este comando é uma combinação de 'git fetch' (baixa as alterações do repositório remoto mas não mescla elas com o seu) e 'git merge' (que mescla tudo junto), o que significa que, quando usamos o git pull, ele recebe as atualizações do repositório remoto (git fetch) e aplica imediatamente as alterações mais recentes no seu local (git merge)
+
+Git revert
+git revert 'número do hash'
+
+- Maneiras de desfazer nossas alterações (commits) local ou remotamente
+- O número do hash pode ser conseguido pelo comando: git log -- online
+
+Git merge
+git merge <nome-da-branch>
+
+- Quando finalizamos o desenvolvimento na branch e tudo funciona bem, sem conflitos, a etapa final é mesclar as branches, isso é feito com o comando git merge.
+- Como visto no git pull, esse comando vai mesclar, no repositório local, todas as alterações feitas.
+
+
+**************************************************
+Elementos adicionais
+
+Git ignore
+- Pasta a ser criada na raiz do diretório, contendo os arquivos que deverão se ignorados na branch, ou seja, aqueles que não sofrerão alteração ao longo das versões. Com isso, é possível economizar espaço de armazenamento, menor volume para download e upload. No Windows, a pasta deve ser nomeada ".gitignore" e os arquivos, classes, deverão ser inseridos nesse arquivo.
+ex: *.bmp (todos os arquivos .bmp); bla/*.bmp (todos os arquivos .bmp dentro da pasta bla)
+
+- Github tem uma página que inclui uma lista de pastas .gitignore para diferentes projetos
+	- github.com/github/gitignore  -> selecionar o projeto, linguagem, etc
+
+___________________________
+Dentro do GitHub
+
+Fork
+- Similar a clonar um repositório, que poderá ser alterado mediante 'Pull request'
+- Serve para acompanhar ou contribuir com alterações de um projeto alheio no GitHub
+
+Pull request
+- Solicitação para alteração de um arquivo de um projeto alheio
+- Pull request deverá ser aceito ou não pelo Owner do projeto
+	- Caso seja aceito, funciona como um commit (alteração no arquivo original)
+
+Issue
+- Informativo feito por algum colaborador dizendo que existe um problema a ser resolvido
+
+Label
+- Etiqueta para classificar as Issues na lista, gerando visibilidade às pessoas que estão seguindo o projeto
+
+Milestone
+- Filtro adicional, que categoriza as Issues, como por exemplo, em qual versão do projeto essa Issue será trabalhada. Gera maior visibilidade às Issues do projeto.
