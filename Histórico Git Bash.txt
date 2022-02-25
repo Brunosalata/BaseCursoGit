@@ -894,3 +894,22 @@ remote: Resolving deltas: 100% (1/1), completed with 1 local object.
 To https://github.com/Brunosalata/GitCursoTemplate.git
    04a8421..0a43e7b  main -> main
 
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ cd ..
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ git clone https://github.com/Brunosalata/BaseCursoGit.git
+Cloning into 'BaseCursoGit'...
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 5 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (5/5), 84.74 KiB | 5.65 MiB/s, done.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ cd BaseCursoGit.git
+bash: cd: BaseCursoGit.git: No such file or directory
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ cd BaseCursoGit
