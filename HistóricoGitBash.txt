@@ -913,3 +913,89 @@ bash: cd: BaseCursoGit.git: No such file or directory
 
 bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
 $ cd BaseCursoGit
+
+
+*******************************************
+Trabalhando com o BitBucket
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/BaseCursoGit (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 3 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/BaseCursoGit (main)
+$ git push
+Enumerating objects: 11, done.
+Counting objects: 100% (11/11), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (9/9), done.
+Writing objects: 100% (9/9), 11.15 KiB | 2.79 MiB/s, done.
+Total 9 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 1 local object.
+To https://github.com/Brunosalata/BaseCursoGit.git
+   1bc9e3e..0a3dce5  main -> main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/BaseCursoGit (main)
+$ cd ..
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ ssh-keygen
+Generating public/private rsa key pair.
+Enter file in which to save the key (/c/Users/bruno/.ssh/id_rsa):
+Created directory '/c/Users/bruno/.ssh'.
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /c/Users/bruno/.ssh/id_rsa
+Your public key has been saved in /c/Users/bruno/.ssh/id_rsa.pub
+The key fingerprint is:
+SHA256:a/GqEYe50aAA2qkBR0Q/0NbrSgo9foeF3Mv7iLCm1X4 bruno@DESKTOP-5O6OJ7D
+The key's randomart image is:
++---[RSA 3072]----+
+|o+*. .           |
+|o+ +o .          |
+|o +.o ..         |
+| o . o.=         |
+|.. ..+= S        |
+|. o.+ += +       |
+| oo+.=o.o .      |
+| .+++.E+ .       |
+|.o..oo++o        |
++----[SHA256]-----+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ cd ~/.ssh/
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/.ssh (master)
+$ ls
+id_rsa  id_rsa.pub
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/.ssh (master)
+$ start .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/.ssh (master)
+$ eval $(ssh-agent)
+Agent pid 187
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/.ssh (master)
+$ ssh-add ~/.ssh/id_rsa
+Identity added: /c/Users/bruno/.ssh/id_rsa (bruno@DESKTOP-5O6OJ7D)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/.ssh (master)
+$ git clone git@bitbucket.org:brunoslima1/cursogitkeyssh.git
+Cloning into 'cursogitkeyssh'...
+The authenticity of host 'bitbucket.org (2406:da00:ff00::22c5:2ef4)' can't be established.
+RSA key fingerprint is SHA256:zzXQOXSRBEiUtuE8AikJYKwbHaxvSc0ojez9YXaGp1A.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'bitbucket.org' (RSA) to the list of known hosts.
+remote: Enumerating objects: 4, done.
+remote: Counting objects: 100% (4/4), done.
+remote: Compressing objects: 100% (4/4), done.
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0
+Receiving objects: 100% (4/4), done.
+
+
+**************************************
