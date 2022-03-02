@@ -914,6 +914,1076 @@ bash: cd: BaseCursoGit.git: No such file or directory
 bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
 $ cd BaseCursoGit
 
+________________________________
+Não é permitido alterar a branch se existir uma alteração em algum arquivo que não tenha sido commitado. 
+- Soluçoes: git reset --hard ou git add . e git commit
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/BaseCursoGit (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/BaseCursoGit (main)
+$ cd ..
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho (master)
+$ cd GitCursoRemoto
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout master
+error: Your local changes to the following files would be overwritten by checkout:
+        index.html
+Please commit your changes or stash them before you switch branches.
+Aborting
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git reset --hard
+HEAD is now at 0a43e7b Uma linha só
+
+____________________________________________
+Trabalhando com branch (ramificação)
+
+Criando nova branch
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch
+* main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch develop
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch
+  develop
+* main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch develop
+fatal: a branch named 'develop' already exists
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkoutdevelop
+git: 'checkoutdevelop' is not a git command. See 'git --help'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout develop
+Switched to branch 'develop'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout -b TASK-1
+Switched to a new branch 'TASK-1'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-1)
+$ git branch
+* TASK-1
+  develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-1)
+$ git branch --list
+* TASK-1
+  develop
+  main
+
+
+Enviando a branch para o repositório remoto
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-1)
+$ ENVIANDO BRANCH DEVELOP PARA O REPOSITÓRIO
+bash: ENVIANDO: command not found
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-1)
+$ git checkout develop
+Switched to branch 'develop'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push
+fatal: The current branch develop has no upstream branch.
+To push the current branch and set the remote as upstream, use
+
+    git push --set-upstream origin develop
+
+
+$ git push --set-upstream TEM COMO ATALHO O COMANDO git push -u
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push -u origin BranchDevelop
+error: src refspec BranchDevelop does not match any
+error: failed to push some refs to 'https://github.com/Brunosalata/GitCursoTemplate.git'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push -u origin develop
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'develop' on GitHub by visiting:
+remote:      https://github.com/Brunosalata/GitCursoTemplate/pull/new/develop
+remote:
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ * [new branch]      develop -> develop
+branch 'develop' set up to track 'origin/develop'.
+
+________________________________________
+Deleção de branch local e no servidor
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+  TASK-1
+* develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d
+fatal: branch name required
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d develop
+error: Cannot delete branch 'develop' checked out at 'C:/Users/bruno/OneDrive/Área de Trabalho/GitCursoRemoto'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d TASK-1
+Deleted branch TASK-1 (was 0a43e7b).
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+* develop
+  main
+
+$ DÁ PRA FORÇAR A DELEÇÃO PELO COMANDO
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -D nome_da_branch
+error: branch 'nome_da_branch' not found.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout TASK-1
+error: pathspec 'TASK-1' did not match any file(s) known to git
+
+
+$ SE ESSA BRANCH EXISTISSE NO SERVIDOR, SERIA POSSÍVEL RECUPERAR ELA
+
+$ PARA DELETAR DO SERVIDOR, DEVEMOS
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d TASK-1
+error: branch 'TASK-1' not found.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push --delete origin TASK-1
+
+_______________________________________
+Renomeando branch local e no servidor
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+* develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout -b TASK-2
+Switched to a new branch 'TASK-2'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git branch -m TASK-2-Update
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2-Update)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -m TASK-2-Update TASK-2
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+  TASK-2
+* develop
+  main
+
+
+$ PARA RENOMEAR BRANCH NO SERVIDOR NÃO EXISTE COMANDO ESPECÍFICO NO GIT PARA ISSO, ENTÃO DEVEMOS APAGAR E CRIAR NOVAMENTE
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git pull
+Already up to date.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout TASK-2
+Switched to branch 'TASK-2'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git pull
+There is no tracking information for the current branch.
+Please specify which branch you want to merge with.
+See git-pull(1) for details.
+
+    git pull <remote> <branch>
+
+If you wish to set tracking information for this branch you can do so with:
+
+    git branch --set-upstream-to=origin/<branch> TASK-2
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git push -u origin TASK-2
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'TASK-2' on GitHub by visiting:
+remote:      https://github.com/Brunosalata/GitCursoTemplate/pull/new/TASK-2
+remote:
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ * [new branch]      TASK-2 -> TASK-2
+branch 'TASK-2' set up to track 'origin/TASK-2'.
+
+
+$ NO CASO ACIMA, PODE HAVER ALGUÉM TRABALHANDO NA BRANCH DO SERVIDOR< ENTÂO É NECESSÁRIO QUE HAVJA UM ALINHAMENTO COM OS DEMAIS COLABORADORES. ENTÃO, PODEMOS SEGUIR OS SEGUINTES PASSOS:
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git branch
+* TASK-2
+  develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git pull
+Already up to date.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-2)
+$ git branch -m TASK-3
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-3)
+$ git push --delete origin TASK-2
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ - [deleted]         TASK-2
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-3)
+$ git branch
+* TASK-3
+  develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-3)
+$ git push -u origin TASK-3
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+remote:
+remote: Create a pull request for 'TASK-3' on GitHub by visiting:
+remote:      https://github.com/Brunosalata/GitCursoTemplate/pull/new/TASK-3
+remote:
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ * [new branch]      TASK-3 -> TASK-3
+branch 'TASK-3' set up to track 'origin/TASK-3'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-3)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d TASK-3
+Deleted branch TASK-3 (was 0a43e7b).
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push --delete origin TASK-3
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ - [deleted]         TASK-3
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+* develop
+  main
+
+_____________________________________
+Mergear uma branch na master
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git status
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git diff
+diff --git a/index.html b/index.html
+index 629a6dc..a7c5c96 100644
+--- a/index.html
++++ b/index.html
+@@ -38,16 +38,16 @@
+         <div class="collapse navbar-collapse" id="navbarResponsive">
+           <ul class="navbar-nav ml-auto">
+             <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#about">Sobre</a>
++              <a class="nav-link js-scroll-trigger" href="#about">About</a>
+             </li>
+             <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#services">Serviços</a>
++              <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+             </li>
+             <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfólio</a>
++              <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+             </li>
+             <li class="nav-item">
+-              <a class="nav-link js-scroll-trigger" href="#contact">Contato</a>
++              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+             </li>
+           </ul>
+         </div>
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+* develop
+  main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git add --all
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git commit -m "Tradução do projeto"
+[develop 3e9a09f] Tradução do projeto
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 345 bytes | 345.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Brunosalata/GitCursoTemplate.git
+   0a43e7b..3e9a09f  develop -> develop
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git status
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git merge
+Already up to date.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git merge develop
+Updating 0a43e7b..3e9a09f
+Fast-forward
+ index.html | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git log
+commit 3e9a09f781dd0924a5ce808123f9ba1ad7a2d749 (HEAD -> main, origin/develop, develop)
+Author: Bruno Salata <brunoslima@gmail.com>
+Date:   Mon Feb 28 18:20:48 2022 -0300
+
+    Tradução do projeto
+
+commit 0a43e7bc4e550b73590b223975f4775edb36a99f (origin/main, origin/HEAD)
+Author: Bruno Salata <brunoslima@gmail.com>
+Date:   Fri Feb 25 15:56:08 2022 -0300
+
+    Uma linha só
+
+commit 04a842144fbb4bda899b723c338e8d9bbc3c273b
+Author: Bruno Salata <brunoslima@gmail.com>
+Date:   Fri Feb 25 15:53:55 2022 -0300
+
+    Arquivo Open duas linhas
+
+commit b964c0f7c25715773f1bb1fb8ebedf2765acce2b
+Author: Brunosalata <96872524+Brunosalata@users.noreply.github.com>
+Date:   Fri Feb 25 13:47:59 2022 -0300
+
+    Atualizando título no repositório remoto
+
+commit de12ccda693fe10e7d646dcbefa8b41d7adec800
+Author: Bruno Salata <brunoslima@gmail.com>
+Date:   Fri Feb 25 12:15:13 2022 -0300
+
+    Versionamento do título website
+
+commit 63007c2c50fe92345ada627c5add2d065a186cad
+Author: Bruno Salata <brunoslima@gmail.com>
+Date:   Fri Feb 25 12:11:20 2022 -0300
+
+    Commit repositório local
+
+commit bccf27fc66a4ce79dba7b99247f9eeca353c5406
+Author: Brunosalata <96872524+Brunosalata@users.noreply.github.com>
+Date:   Thu Feb 24 16:33:37 2022 -0300
+
+    Commit inicial.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git push
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Brunosalata/GitCursoTemplate.git
+   0a43e7b..3e9a09f  main -> main
+
+________________________________________
+Alteração simultânea de arquivo local e do servidor (conflito)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git pull
+Already up to date.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is up to date with 'origin/main'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git status
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git pull
+Already up to date.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git status
+On branch develop
+Your branch is up to date with 'origin/develop'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git add --all
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git commit -m "Tradução do site - 2"
+[develop f3c09c7] Tradução do site - 2
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push
+gEnumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 307 bytes | 307.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Brunosalata/GitCursoTemplate.git
+   3e9a09f..f3c09c7  develop -> develop
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ ALTEREI O ARQUIVO INDEX.TXT NO SERVIDOR
+bash: ALTEREI: command not found
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git merge develop
+Updating 3e9a09f..f3c09c7
+Fast-forward
+ index.html | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git push
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to 'https://github.com/Brunosalata/GitCursoTemplate.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git pull
+remote: Enumerating objects: 5, done.
+remote: Counting objects: 100% (5/5), done.
+remote: Compressing objects: 100% (3/3), done.
+remote: Total 3 (delta 2), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (3/3), 677 bytes | 19.00 KiB/s, done.
+From https://github.com/Brunosalata/GitCursoTemplate
+   3e9a09f..ed3752a  main       -> origin/main
+Auto-merging index.html
+CONFLICT (content): Merge conflict in index.html
+Automatic merge failed; fix conflicts and then commit the result.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git status
+On branch main
+Your branch and 'origin/main' have diverged,
+and have 1 and 1 different commits each, respectively.
+  (use "git pull" to merge the remote branch into yours)
+
+You have unmerged paths.
+  (fix conflicts and run "git commit")
+  (use "git merge --abort" to abort the merge)
+
+Unmerged paths:
+  (use "git add <file>..." to mark resolution)
+        both modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git add --all
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git commit -m "Tradução - Resolvendo conflitos"
+[main 135d9bf] Tradução - Resolvendo conflitos
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 2 commits.
+  (use "git push" to publish your local commits)
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git push
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 239 bytes | 239.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Brunosalata/GitCursoTemplate.git
+   ed3752a..135d9bf  main -> main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git pull
+Already up to date.
+
+__________________________________________
+REsolução de Conflitos usando a ferramenta visual Kdiff3 (instalação já realizada)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git mergetool
+
+This message is displayed because 'merge.tool' is not configured.
+See 'git mergetool --tool-help' or 'git help config' for more details.
+'git mergetool' will now attempt to use one of the following tools:
+opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse diffmerge ecmerge p4merge araxis bc codecompare smerge emerge vimdiff nvimdiff
+No files need merging
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --list
+user.name=Bruno Salata
+user.email=brunoslima@gmail.com
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --add merge.tool kdiff3
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --list
+user.name=Bruno Salata
+user.email=brunoslima@gmail.com
+merge.tool=kdiff3
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --add mergetool.kdiff3.path "C:\Program Files\KDiff3\kdiff3.exe"
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --add mergetool.kdiff3.trustExitCode false
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git config --global --list
+user.name=Bruno Salata
+user.email=brunoslima@gmail.com
+merge.tool=kdiff3
+mergetool.kdiff3.path=C:\Program Files\KDiff3\kdiff3.exe
+mergetool.kdiff3.trustexitcode=false
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git mergetool
+No files need merging
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout -b develop
+fatal: a branch named 'develop' already exists
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout -b branchkdiff3
+Switched to a new branch 'branchkdiff3'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git commit -m "commit branchkdiff3"
+[branchkdiff3 0dabe2a] commit branchkdiff3
+ 1 file changed, 5 insertions(+)
+ create mode 100644 config.txt
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout branchkdiff3
+Switched to branch 'branchkdiff3'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git checkout config
+error: pathspec 'config' did not match any file(s) known to git
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git commit -m "deleção config.txt"
+[branchkdiff3 2a73269] deleção config.txt
+ 1 file changed, 5 deletions(-)
+ delete mode 100644 config.txt
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git checkout branchkdiff3
+Already on 'branchkdiff3'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git commit -m "Alteração Open branchkdiff3"
+[branchkdiff3 fce29d1] Alteração Open branchkdiff3
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (branchkdiff3)
+$ git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git commit -m "Alteração Open Main"
+[main d65c329] Alteração Open Main
+ 1 file changed, 5 insertions(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git merge branchkdiff3
+Auto-merging open.txt
+CONFLICT (content): Merge conflict in open.txt
+Automatic merge failed; fix conflicts and then commit the result.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git mergetool
+Merging:
+open.txt
+
+Normal merge conflict for 'open.txt':
+  {local}: modified file
+  {remote}: modified file
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git status
+On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+  (use "git push" to publish your local commits)
+
+All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+
+Changes to be committed:
+        modified:   open.txt
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git diff
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git diff --staged
+diff --git a/open.txt b/open.txt
+index 0a69d84..070e45f 100644
+--- a/open.txt
++++ b/open.txt
+@@ -2,4 +2,4 @@ Este é o conteúdo do curso.
+ arquivo1
+ arquivo 2
+ arquivo 3
+-arquivo 4
+\ No newline at end of file
++arquivo 4 alterado
+\ No newline at end of file
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main|MERGING)
+$ git commit -m "Resolução de Conflitos"
+[main b715a23] Resolução de Conflitos
+
+_______________________________________
+Pull request
+- Criando nova branch, alterando conteúdo, upando no servidor, Pull request (TASK-4 >>> develop), atualizando branch develop no servidor, git pull localmente em develop, deleção da branch local e no servidor
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout -b TASK-4
+Switched to a new branch 'TASK-4'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git status
+On branch TASK-4
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git status
+On branch TASK-4
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git commit -a -m "Mais traduções"
+[TASK-4 bae95a5] Mais traduções
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git push -u origin TASK-4
+Enumerating objects: 19, done.
+Counting objects: 100% (19/19), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (15/15), done.
+Writing objects: 100% (16/16), 1.55 KiB | 529.00 KiB/s, done.
+Total 16 (delta 8), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (8/8), completed with 2 local objects.
+remote:
+remote: Create a pull request for 'TASK-4' on GitHub by visiting:
+remote:      https://github.com/Brunosalata/GitCursoTemplate/pull/new/TASK-4
+remote:
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ * [new branch]      TASK-4 -> TASK-4
+branch 'TASK-4' set up to track 'origin/TASK-4'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git status
+On branch TASK-4
+Your branch is up to date with 'origin/TASK-4'.
+
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (TASK-4)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git pull
+remote: Enumerating objects: 1, done.
+remote: Counting objects: 100% (1/1), done.
+remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (1/1), 634 bytes | 63.00 KiB/s, done.
+From https://github.com/Brunosalata/GitCursoTemplate
+   f3c09c7..fc49442  develop    -> origin/develop
+Updating f3c09c7..fc49442
+Fast-forward
+ index.html | 2 +-
+ open.txt   | 6 +++++-
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d TASK-4
+Deleted branch TASK-4 (was bae95a5).
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git push --delete origin TASK-4
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ - [deleted]         TASK-4
+
+____________________________________
+Inserindo tags nos commits já realizados, para facilitar a identificação posterior
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout main
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git log --oneline
+b715a23 (HEAD -> main) Resolução de Conflitos
+d65c329 Alteração Open Main
+fce29d1 (branchkdiff3) Alteração Open branchkdiff3
+2a73269 deleção config.txt
+0dabe2a commit branchkdiff3
+135d9bf (origin/main, origin/HEAD) Tradução - Resolvendo conflitos
+ed3752a Traduzindo para espanhol
+f3c09c7 Tradução do site - 2
+3e9a09f Tradução do projeto
+0a43e7b Uma linha só
+04a8421 Arquivo Open duas linhas
+b964c0f Atualizando título no repositório remoto
+de12ccd Versionamento do título website
+63007c2 Commit repositório local
+bccf27f Commit inicial.
+
+
+PARA APLICAR, UTILIZAR: GIT TAG -A <NOME DA TAG> -m "MENSAGEM"
+Tag HEAD identifica o último commit realizado
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git tag -a v1.0 -m "Versão 1 após alterações de tradução"
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git tag
+v1.0
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git log -oneline
+fatal: unrecognized argument: -oneline
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git log --oneline
+b715a23 (HEAD -> main, tag: v1.0) Resolução de Conflitos
+d65c329 Alteração Open Main
+fce29d1 (branchkdiff3) Alteração Open branchkdiff3
+2a73269 deleção config.txt
+0dabe2a commit branchkdiff3
+135d9bf (origin/main, origin/HEAD) Tradução - Resolvendo conflitos
+ed3752a Traduzindo para espanhol
+f3c09c7 Tradução do site - 2
+3e9a09f Tradução do projeto
+0a43e7b Uma linha só
+04a8421 Arquivo Open duas linhas
+b964c0f Atualizando título no repositório remoto
+de12ccd Versionamento do título website
+63007c2 Commit repositório local
+bccf27f Commit inicial.
+
+
+ENVIANDO TAG PARA O SERVIDOR
+
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git push origin v1.0
+Enumerating objects: 1, done.
+Counting objects: 100% (1/1), done.
+Writing objects: 100% (1/1), 194 bytes | 194.00 KiB/s, done.
+Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/Brunosalata/GitCursoTemplate.git
+ * [new tag]         v1.0 -> v1.0
+
+
+CRIANDO, EDITANDO E APAGANDO BRANCHS EM CIMA DE COMMITS PASSADOS (Não o Head)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch
+  branchkdiff3
+  develop
+* main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git tag
+v1.0
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git log --oneline
+fc49442 (HEAD -> develop, origin/develop) Merge pull request #1 from Brunosalata/TASK-4
+bae95a5 Mais traduções
+b715a23 (tag: v1.0, main) Resolução de Conflitos
+d65c329 Alteração Open Main
+fce29d1 (branchkdiff3) Alteração Open branchkdiff3
+2a73269 deleção config.txt
+0dabe2a commit branchkdiff3
+135d9bf (origin/main, origin/HEAD) Tradução - Resolvendo conflitos
+ed3752a Traduzindo para espanhol
+f3c09c7 Tradução do site - 2
+3e9a09f Tradução do projeto
+0a43e7b Uma linha só
+04a8421 Arquivo Open duas linhas
+b964c0f Atualizando título no repositório remoto
+de12ccd Versionamento do título website
+63007c2 Commit repositório local
+bccf27f Commit inicial.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git checkout v1.0
+Note: switching to 'v1.0'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at b715a23 Resolução de Conflitos
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto ((v1.0))
+$ git status
+HEAD detached at v1.0
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   index.html
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto ((v1.0))
+$ git add .
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto ((v1.0))
+$ git commit -m "modificações a partir da tag"
+[detached HEAD f69a88c] modificações a partir da tag
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto ((f69a88c...))
+$ git checkout main
+Warning: you are leaving 1 commit behind, not connected to
+any of your branches:
+
+  f69a88c modificações a partir da tag
+
+If you want to keep it by creating a new branch, this may be a good time
+to do so with:
+
+ git branch <new-branch-name> f69a88c
+
+Switched to branch 'main'
+Your branch is ahead of 'origin/main' by 5 commits.
+  (use "git push" to publish your local commits)
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git branch
+  branchkdiff3
+  develop
+* main
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git tag
+v1.0
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (main)
+$ git checkout -b teste f69a88c
+Switched to a new branch 'teste'
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (teste)
+$ git status
+On branch teste
+nothing to commit, working tree clean
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (teste)
+$ git checkout develop
+Switched to branch 'develop'
+Your branch is up to date with 'origin/develop'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -d teste
+error: The branch 'teste' is not fully merged.
+If you are sure you want to delete it, run 'git branch -D teste'.
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+  branchkdiff3
+* develop
+  main
+  teste
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch -D teste
+Deleted branch teste (was f69a88c).
+
+bruno@DESKTOP-5O6OJ7D MINGW64 ~/OneDrive/Área de Trabalho/GitCursoRemoto (develop)
+$ git branch
+  branchkdiff3
+* develop
+  main
+
 
 *******************************************
 Trabalhando com o BitBucket
