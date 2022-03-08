@@ -37,6 +37,9 @@ Git reset
 - Desfazer mudanças na branch
 	- Para listar os arquivos contendo alterações: git reset
 	- Para desfazer todas as mudanças da branch: git reset --hard
+	- Para reverter commits realizados erroneamente: git reset --hard HEAD~1 (onde o número determina quantos commits deverão ser descartados a partir do HEAD)
+- Caso seja necessário apenas pequenas alterações em um commit ainda não finalizado, devemos git add nas alterações e seguir com: git commit --amend
+	- NESSE MOMENTO, ABRE UM EDITOR DE TEXTO. PODEMOS FAZER ALTERAÇÃO DO NOME OU NÃO. ENTÃO, CLICAR 'ESC' E DIGITAL ':wq' E ENTER (wp = write e quit)
 
 Git clean
 
@@ -102,6 +105,19 @@ git merge <nome-da-branch>
 - Caso ocorra conflito, podemos chamar a ferramenta (mergetool) com o comando: git mergetool
 	- Pode haver conflito entre branches, caso existe diferença dentro de arquivos comuns
 
+Git tag
+
+- git tag -A <NOME DA TAG> -m "MENSAGEM"
+- listagem das tags na branch: git tag
+- Tag HEAD identifica o último commit realizado
+
+Git stash
+
+- Armazenamento das alterações na memória temporariamente, para poder navegar pelo repositório sem precisar commitar as alterações da branch
+
+	- Git stash apply: aplica o stash mais recente
+	- Git stash pop: aplica o stash mais recente e remove da lista
+	- Git stash drop: remove um stash específico - git stash drop stash@{ }
 
 **************************************************
 Elementos adicionais
@@ -133,3 +149,10 @@ Label
 
 Milestone
 - Filtro adicional, que categoriza as Issues, como por exemplo, em qual versão do projeto essa Issue será trabalhada. Gera maior visibilidade às Issues do projeto.
+
+**************************************
+Ferramenta para manupulação de repositórios de forma mais visual
+
+- Source Tree
+
+- GitKraken
